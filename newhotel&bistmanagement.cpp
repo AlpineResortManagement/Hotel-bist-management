@@ -17,7 +17,7 @@ int room_no;
 char name[30];
 char address[50];
 char phone[10];
-                         char aadharnumber[50];
+              char aadharnumber[50]; 
 
 public:
 
@@ -108,10 +108,10 @@ ofstream fout("Record.dat",ios::app);
 cout<<"\n Enter Customer Detalis";
 cout<<"\n ----------------------";
 cout<<"\n\n Room no: ";
-cout<<"\n Total no. of Rooms - 50";
-cout<<"\n Ordinary Rooms from 1 - 30";
-cout<<"\n Luxuary Rooms from 31 - 45";
-cout<<"\n Royal Rooms from 46 - 50";
+cout<<"\n Total no. of Rooms 100- 124";
+cout<<"\n Ordinary Rooms from 125 - 149 ";
+cout<<"\n Luxuary Rooms from 150 - 174";
+cout<<"\n Royal Rooms from 175 - 200";
 cout <<"\n Enter The Room no. you want to stay in :- "<<endl;
 cin>>r;
 
