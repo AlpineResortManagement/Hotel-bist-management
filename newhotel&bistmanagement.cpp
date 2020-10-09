@@ -17,6 +17,7 @@ int room_no;
 char name[30];
 char address[50];
 char phone[10];
+                         char aadharnumber[50];
 
 public:
 
