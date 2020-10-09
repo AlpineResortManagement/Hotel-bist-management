@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include<conio.h>
 #include<fstream>
@@ -460,6 +459,11 @@ int restro::foodmanager()
             signalchoice[counter]=0;
         }
         counter=0;
+        int calories[500]={0,0,0,0,0,0,0,0,0,0,(272*8)};
+       /* for(counter=0;counter<500;counter++)
+        {
+            calories[counter]=1000;
+        }*/
         int mrp[500];
         for(counter=0;counter<500;counter++)
         {
@@ -467,7 +471,7 @@ int restro::foodmanager()
         }
         counter=0;
         int av,impinput,listing,pplcounter;
-        int a,b,i=0,foodbill=0;
+        int a,b,i=0,foodbill=0,totcalories=0;
         srand(time(NULL));
         pplcounter = 20+(rand()%21);
 
@@ -508,18 +512,28 @@ int restro::foodmanager()
                              cout<<"\n\n\n\n\t\t\t\t\t Continental/ Fast Food";
                             cout<<"\n\n\n\n\n\n";
                             av=1;
+                            cout<<"\t\t\t\t\t  ";
+                            cout<<"           Item name";
+                            cout<<"                MRP       Calories";
+                            cout<<"\n\t\t\t\t\t********************************************************";
+                            cout<<"\n";
                             for(counter=10;counter<24;counter++)
                             {
                                 cout<<"\t\t\t\t\t";
-                                cout<<(av);
+                                cout<<setw(3)<<left<<(av);
                                 cout<<". ";
-                                cout<<menu[counter];
+                                cout<<setw(30)<<left<<menu[counter];
+                                cout<<"-  ";
+                                cout<<setw(13)<<mrp[counter];
+                                cout<<calories[counter];
                                 cout<<"\n";
                                 av++;
                             }
-                            cout<<"\t\t\t\t\t"<<av;
+                            cout<<"\t\t\t\t\t";
+                            cout<<setw(3)<<left<<av;
                             cout<<". Go back\n\t\t\t\t\t";
                             cout<<"\n\t\t\t\t\tTotal Bill yet:"<<foodbill<<endl;
+                            cout<<"\n\t\t\t\t\tTotal Calories yet:"<<totcalories<<endl;
                             cin>>impinput;
                             if(impinput<1 || impinput>15)
                             {
@@ -532,6 +546,7 @@ int restro::foodmanager()
                             }
                             signalchoice[impinput+9]++;
                             foodbill=foodbill+mrp[impinput+9];
+                            totcalories=totcalories+calories[impinput+9];
                             goto somelabel1;
                             break;
                     case 2 :
@@ -542,18 +557,28 @@ int restro::foodmanager()
                              cout<<"\n\n\n\n\t\t\t\t\t Gujarati";
                             cout<<"\n\n\n\n\n\n";
                             av=1;
+                            cout<<"\t\t\t\t\t  ";
+                            cout<<"           Item name";
+                            cout<<"                MRP       Calories";
+                            cout<<"\n\t\t\t\t\t********************************************************";
+                            cout<<"\n";
                             for(counter=24;counter<32;counter++)
                             {
                                 cout<<"\t\t\t\t\t";
-                                cout<<(av);
+                                cout<<setw(3)<<left<<(av);
                                 cout<<". ";
-                                cout<<menu[counter];
+                                cout<<setw(30)<<left<<menu[counter];
+                                cout<<"-  ";
+                                cout<<setw(13)<<mrp[counter];
+                                cout<<calories[counter];
                                 cout<<"\n";
                                 av++;
                             }
-                            cout<<"\t\t\t\t\t"<<av;
+                            cout<<"\t\t\t\t\t";
+                            cout<<setw(3)<<left<<av;
                             cout<<". Go back\n\t\t\t\t\t";
                             cout<<"\n\t\t\t\t\tTotal Bill yet:"<<foodbill<<endl;
+                            cout<<"\n\t\t\t\t\tTotal Calories yet:"<<totcalories<<endl;
                             cin>>impinput;
                             if(impinput<1 || impinput>9)
                             {
@@ -566,6 +591,7 @@ int restro::foodmanager()
                             }
                             signalchoice[impinput+23]++;
                             foodbill=foodbill+mrp[impinput+23];
+                            totcalories=totcalories+calories[impinput+23];
                             goto somelabel2;
                             break;
                     case 3 :
@@ -574,18 +600,28 @@ int restro::foodmanager()
                              cout<<"\n\n\n\n\t\t\t\t\t South Indian";
                             cout<<"\n\n\n\n\n\n";
                             av=1;
+                            cout<<"\t\t\t\t\t  ";
+                            cout<<"           Item name";
+                            cout<<"                MRP       Calories";
+                            cout<<"\n\t\t\t\t\t********************************************************";
+                            cout<<"\n";
                             for(counter=32;counter<42;counter++)
                             {
                                 cout<<"\t\t\t\t\t";
-                                cout<<(av);
+                                cout<<setw(3)<<left<<(av);
                                 cout<<". ";
-                                cout<<menu[counter];
+                                cout<<setw(30)<<left<<menu[counter];
+                                cout<<"-  ";
+                                cout<<setw(13)<<mrp[counter];
+                                cout<<calories[counter];
                                 cout<<"\n";
                                 av++;
                             }
-                            cout<<"\t\t\t\t\t"<<av;
+                            cout<<"\t\t\t\t\t";
+                            cout<<setw(3)<<left<<av;
                             cout<<". Go back\n\t\t\t\t\t";
                             cout<<"\n\t\t\t\t\tTotal Bill yet:"<<foodbill<<endl;
+                            cout<<"\n\t\t\t\t\tTotal Calories yet:"<<totcalories<<endl;
                             cin>>impinput;
                             if(impinput<1 || impinput>11)
                             {
@@ -598,6 +634,7 @@ int restro::foodmanager()
                             }
                             signalchoice[impinput+31]++;
                             foodbill=foodbill+mrp[impinput+31];
+                            totcalories=totcalories+calories[impinput+31];
                             goto somelabel3;
                             break;
                     case 4 :
@@ -606,18 +643,28 @@ int restro::foodmanager()
                              cout<<"\n\n\n\n\t\t\t\t\t Chinese";
                             cout<<"\n\n\n\n\n\n";
                             av=1;
+                            cout<<"\t\t\t\t\t  ";
+                            cout<<"           Item name";
+                            cout<<"                MRP       Calories";
+                            cout<<"\n\t\t\t\t\t********************************************************";
+                            cout<<"\n";
                             for(counter=42;counter<50;counter++)
                             {
                                 cout<<"\t\t\t\t\t";
-                                cout<<(av);
+                                cout<<setw(3)<<left<<(av);
                                 cout<<". ";
-                                cout<<menu[counter];
+                                cout<<setw(30)<<left<<menu[counter];
+                                cout<<"-  ";
+                                cout<<setw(13)<<mrp[counter];
+                                cout<<calories[counter];
                                 cout<<"\n";
                                 av++;
                             }
-                            cout<<"\t\t\t\t\t"<<av;
+                            cout<<"\t\t\t\t\t";
+                            cout<<setw(3)<<left<<av;
                             cout<<". Go back\n\t\t\t\t\t";
                             cout<<"\n\t\t\t\t\tTotal Bill yet:"<<foodbill<<endl;
+                            cout<<"\n\t\t\t\t\tTotal Calories yet:"<<totcalories<<endl;
                             cin>>impinput;
                             if(impinput<1 || impinput>9)
                             {
@@ -630,6 +677,7 @@ int restro::foodmanager()
                             }
                             signalchoice[impinput+41]++;
                             foodbill=foodbill+mrp[impinput+41];
+                            totcalories=totcalories+calories[impinput+41];
                             goto somelabel4;
                             break;
                     case 5 :
@@ -638,18 +686,28 @@ int restro::foodmanager()
                              cout<<"\n\n\n\n\t\t\t\t\t Punjabi";
                             cout<<"\n\n\n\n\n\n";
                             av=1;
+                            cout<<"\t\t\t\t\t  ";
+                            cout<<"           Item name";
+                            cout<<"                MRP       Calories";
+                            cout<<"\n\t\t\t\t\t********************************************************";
+                            cout<<"\n";
                             for(counter=50;counter<59;counter++)
                             {
                                 cout<<"\t\t\t\t\t";
-                                cout<<(av);
+                                cout<<setw(3)<<left<<(av);
                                 cout<<". ";
-                                cout<<menu[counter];
+                                cout<<setw(30)<<left<<menu[counter];
+                                cout<<"-  ";
+                                cout<<setw(13)<<mrp[counter];
+                                cout<<calories[counter];
                                 cout<<"\n";
                                 av++;
                             }
-                            cout<<"\t\t\t\t\t"<<av;
+                            cout<<"\t\t\t\t\t";
+                            cout<<setw(3)<<left<<av;
                             cout<<". Go back\n\t\t\t\t\t";
                             cout<<"\n\t\t\t\t\tTotal Bill yet:"<<foodbill<<endl;
+                            cout<<"\n\t\t\t\t\tTotal Calories yet:"<<totcalories<<endl;
                             cin>>impinput;
                                                         if(impinput<1 || impinput>10)
                             {
@@ -662,6 +720,7 @@ int restro::foodmanager()
                             }
                             signalchoice[impinput+49]++;
                             foodbill=foodbill+mrp[impinput+49];
+                            totcalories=totcalories+calories[impinput+49];
                             goto somelabel5;
                             break;
                     case 6 :
@@ -670,18 +729,28 @@ int restro::foodmanager()
                                  cout<<"\n\n\n\n\t\t\t\t\t Deserts";
                             cout<<"\n\n\n\n\n\n";
                             av=1;
+                            cout<<"\t\t\t\t\t  ";
+                            cout<<"           Item name";
+                            cout<<"                MRP       Calories";
+                            cout<<"\n\t\t\t\t\t********************************************************";
+                            cout<<"\n";
                             for(counter=59;counter<65;counter++)
                             {
                                 cout<<"\t\t\t\t\t";
-                                cout<<(av);
+                                cout<<setw(3)<<left<<(av);
                                 cout<<". ";
-                                cout<<menu[counter];
+                                cout<<setw(30)<<left<<menu[counter];
+                                cout<<"-  ";
+                                cout<<setw(13)<<mrp[counter];
+                                cout<<calories[counter];
                                 cout<<"\n";
                                 av++;
                             }
-                            cout<<"\t\t\t\t\t"<<av;
+                            cout<<"\t\t\t\t\t";
+                            cout<<setw(3)<<left<<av;
                             cout<<". Go back\n\t\t\t\t\t";
                             cout<<"\n\t\t\t\t\tTotal Bill yet:"<<foodbill<<endl;
+                            cout<<"\n\t\t\t\t\tTotal Calories yet:"<<totcalories<<endl;
                             cin>>impinput;
                             if(impinput<1 || impinput>7)
                             {
@@ -694,6 +763,7 @@ int restro::foodmanager()
                             }
                             signalchoice[impinput+58]++;
                             foodbill=foodbill+mrp[impinput+58];
+                            totcalories=totcalories+calories[impinput+58];
                             goto somelabel6;
                             break;
                     case 7 :
@@ -702,18 +772,28 @@ int restro::foodmanager()
                              cout<<"\n\n\n\n\t\t\t\t\t Soup";
                             cout<<"\n\n\n\n\n";
                             av=1;
+                            cout<<"\t\t\t\t\t  ";
+                            cout<<"           Item name";
+                            cout<<"                MRP       Calories";
+                            cout<<"\n\t\t\t\t\t********************************************************";
+                            cout<<"\n";
                             for(counter=65;counter<76;counter++)
                             {
                                 cout<<"\t\t\t\t\t";
-                                cout<<(av);
+                                cout<<setw(3)<<left<<(av);
                                 cout<<". ";
-                                cout<<menu[counter];
+                                cout<<setw(30)<<left<<menu[counter];
+                                cout<<"-  ";
+                                cout<<setw(13)<<mrp[counter];
+                                cout<<calories[counter];
                                 cout<<"\n";
                                 av++;
                             }
-                            cout<<"\t\t\t\t\t"<<av;
+                            cout<<"\t\t\t\t\t";
+                            cout<<setw(3)<<left<<av;
                             cout<<". Go back\n\t\t\t\t\t";
                             cout<<"\n\t\t\t\t\tTotal Bill yet:"<<foodbill<<endl;
+                            cout<<"\n\t\t\t\t\tTotal Calories yet:"<<totcalories<<endl;
                             cin>>impinput;
                                                         if(impinput<1 || impinput>12)
                             {
@@ -726,6 +806,7 @@ int restro::foodmanager()
                             }
                             signalchoice[impinput+64]++;
                             foodbill=foodbill+mrp[impinput+64];
+                            totcalories=totcalories+calories[impinput+64];
                             goto somelabel7;
                             break;
                     case 8 :
@@ -734,18 +815,28 @@ int restro::foodmanager()
                                  cout<<"\n\n\n\n\t\t\t\t\t Beverages";
                             cout<<"\n\n\n\n\n\n";
                             av=1;
+                            cout<<"\t\t\t\t\t  ";
+                            cout<<"           Item name";
+                            cout<<"                MRP       Calories";
+                            cout<<"\n\t\t\t\t\t********************************************************";
+                            cout<<"\n";
                             for(counter=76;counter<85;counter++)
                             {
                                 cout<<"\t\t\t\t\t";
-                                cout<<(av);
+                                cout<<setw(3)<<left<<(av);
                                 cout<<". ";
-                                cout<<menu[counter];
+                                cout<<setw(30)<<left<<menu[counter];
+                                cout<<"-  ";
+                                cout<<setw(13)<<mrp[counter];
+                                cout<<calories[counter];
                                 cout<<"\n";
                                 av++;
                             }
-                            cout<<"\t\t\t\t\t"<<av;
+                            cout<<"\t\t\t\t\t";
+                            cout<<setw(3)<<left<<av;
                             cout<<". Go back\n\t\t\t\t\t";
                             cout<<"\n\t\t\t\t\tTotal Bill yet:"<<foodbill<<endl;
+                            cout<<"\n\t\t\t\t\tTotal Calories yet:"<<totcalories<<endl;
                             cin>>impinput;
                                                         if(impinput<1 || impinput>10)
                             {
@@ -758,6 +849,7 @@ int restro::foodmanager()
                             }
                             signalchoice[impinput+75]++;
                             foodbill=foodbill+mrp[impinput+75];
+                            totcalories=totcalories+calories[impinput+75];
                             goto somelabel8;
                             break;
                     case 9 :
@@ -766,18 +858,28 @@ int restro::foodmanager()
                              cout<<"\n\n\n\n\t\t\t\t\t Appetizers";
                             cout<<"\n\n\n\n\n\n";
                             av=1;
+                            cout<<"\t\t\t\t\t  ";
+                            cout<<"           Item name";
+                            cout<<"                MRP       Calories";
+                            cout<<"\n\t\t\t\t\t********************************************************";
+                            cout<<"\n";
                             for(counter=85;counter<91;counter++)
                             {
                                 cout<<"\t\t\t\t\t";
-                                cout<<(av);
+                                cout<<setw(3)<<left<<(av);
                                 cout<<". ";
-                                cout<<menu[counter];
+                                cout<<setw(30)<<left<<menu[counter];
+                                cout<<"-  ";
+                                cout<<setw(13)<<mrp[counter];
+                                cout<<calories[counter];
                                 cout<<"\n";
                                 av++;
                             }
-                            cout<<"\t\t\t\t\t"<<av;
+                            cout<<"\t\t\t\t\t";
+                            cout<<setw(3)<<left<<av;
                             cout<<". Go back\n\t\t\t\t\t";
                             cout<<"\n\t\t\t\t\tTotal Bill yet:"<<foodbill<<endl;
+                            cout<<"\n\t\t\t\t\tTotal Calories yet:"<<totcalories<<endl;
                             cin>>impinput;
                                                         if(impinput<1 || impinput>7)
                             {
@@ -790,6 +892,7 @@ int restro::foodmanager()
                             }
                             signalchoice[impinput+84]++;
                             foodbill=foodbill+mrp[impinput+84];
+                            totcalories=totcalories+calories[impinput+84];
                             goto somelabel9;
                             break;
                     case 10:
@@ -798,18 +901,28 @@ int restro::foodmanager()
                             cout<<"\n\n\n\n\t\t\t\t\t Diet Options";
                             cout<<"\n\n\n\n\n\n";
                             av=1;
+                            cout<<"\t\t\t\t\t  ";
+                            cout<<"           Item name";
+                            cout<<"                MRP       Calories";
+                            cout<<"\n\t\t\t\t\t********************************************************";
+                            cout<<"\n";
                             for(counter=91;counter<105;counter++)
                             {
                                 cout<<"\t\t\t\t\t";
-                                cout<<(av);
+                                cout<<setw(3)<<left<<(av);
                                 cout<<". ";
-                                cout<<menu[counter];
+                                cout<<setw(30)<<left<<menu[counter];
+                                cout<<"-  ";
+                                cout<<setw(13)<<mrp[counter];
+                                cout<<calories[counter];
                                 cout<<"\n";
                                 av++;
                             }
-                            cout<<"\t\t\t\t\t"<<av;
+                            cout<<"\t\t\t\t\t";
+                            cout<<setw(3)<<left<<av;
                             cout<<". Go back\n\t\t\t\t\t";
                             cout<<"\n\t\t\t\t\tTotal Bill yet:"<<foodbill<<endl;
+                            cout<<"\n\t\t\t\t\tTotal Calories yet:"<<totcalories<<endl;
                             cin>>impinput;
                                                         if(impinput<1 || impinput>15)
                             {
@@ -822,6 +935,7 @@ int restro::foodmanager()
                             }
                             signalchoice[impinput+90]++;
                             foodbill=foodbill+mrp[impinput+90];
+                            totcalories=totcalories+calories[impinput+90];
                             goto somelabel10;
                             break;
 
@@ -837,6 +951,10 @@ int restro::foodmanager()
                     cout<<"\n\t\t\t\t\t*************************************";
                     cout<<"\n\t\t\t\t\t-         Printed Bill               -";
                     cout<<"\n\t\t\t\t\t*************************************\n\n\n";
+                    cout<<"\t\t\t\t\t           Item name";
+                            cout<<"                MRP         Calories";
+                            cout<<"\n\t\t\t\t\t********************************************************";
+                            cout<<"\n";
                     for(counter=0;counter<500;counter++)
                     {
 
@@ -844,15 +962,20 @@ int restro::foodmanager()
                         {
                             listing++;
                             cout<<"\n\t\t\t\t\t";
-                            cout<<listing;
+                            cout<<setw(3)<<left<<listing;
                             cout<<". ";
                             cout<<setw(30)<< left<< menu[counter];
-                            cout<<mrp[counter];
+                            cout<<" ";
+                            cout<<setw(14)<<left<<mrp[counter];
+                            cout<<calories[counter];
                         }
                     }
-                     cout<<"\n\t\t\t\t\t************************************\n\t\t\t\t\t";
+                     cout<<"\n\t\t\t\t\t********************************************************\n\t\t\t\t\t";
                      cout<<setw(33)<<left<<"Total Price:";
-                     cout<<foodbill;
+                     cout<<"   "<<foodbill;
+                     cout<<"\n\n\t\t\t\t\t";
+                     cout<<setw(33)<<left<<"Total Calories:";
+                     cout<<"                 "<<totcalories;
                      cout<<"\n\t\t\t\t\t Press any Key to Continue....";
                     getch();
                 }
