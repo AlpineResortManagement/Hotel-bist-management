@@ -974,9 +974,10 @@ int restro::foodmanager()
                      cout<<"\n\t\t\t\t\t********************************************************\n\t\t\t\t\t";
                      cout<<setw(33)<<left<<"Total Price:";
                      cout<<"   "<<foodbill;
+                     cout<<"+18%GST= "<<(1.18*foodbill)<<" Rs";
                      cout<<"\n\n\t\t\t\t\t";
                      cout<<setw(33)<<left<<"Total Calories:";
-                     cout<<"                 "<<totcalories;
+                     cout<<"                 "<<totcalories<<" cal";
                      cout<<"\n\t\t\t\t\t Press any Key to Continue....";
                     getch();
                 }
