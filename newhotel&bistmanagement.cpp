@@ -7,6 +7,7 @@
 #include<ctime>
 #include<dos.h>
 #include<iomanip>
+#include<string>
 
 using namespace std;
 
@@ -455,6 +456,8 @@ int restro::foodmanager()
         string menu[500]={"Continental/ Fast Food","Gujarati","South Indian","Chinese","Punjabi","Deserts","Soup","Beverages","Appetizers","Diet Options","Classic cheese Pizza","Marghertia","7 Spice Pizza","Custom Pizza","Spicy Pasta","Cheese Pasta","Custom Pasta","Grilled Sandwich","Cheese Sandwich","Vegetable Sandwich","Paav Bhaji","Cheese Macroni","Regular Macroni","Custom Macroni","Classic Thali","Dhoklas","Methi Theplas","Daal Dhokli","Kadhi","Khandvi","Shaak Bhaaji","Daabeli","Simple Dosa","Cheese Dosa","Custom Dosa","Meduvadaa","Cheese Meguvadaa","Custom Meduvadaa","Idli","Utappam","Vadaa Sambhar","Sambhar","Fried Rice","Manchurian","Simple Noodles","hakka Noodles","Schezwan Noodles","ChauMin","Tofu","Spring roll","Sarso Ka saag","Makke Di Roti","Chole Bhature","Chanaa Masaala","Dhaba daal","Daal Makhni","Amristsari Kulcha","Kulcha","Paneer Tikka","Choco lava cake","Rasgulla","Gulab Jamoon","Custard","Kheer","Shri Khand","Mancahu soup","Tomato soup","Minestrone Soup","Noodle Soup","French Onion Soup","Creame Soup","Totellini Soup","Bread Soup","Sweet Corn Plain Soup","Manchurian Soup","Sweet Corn Soup","Simple Tea","Elachi Tea","Masala Tea","Cold Drink","Cappuccino","Mocha","Mocha","Black Coffee","Espresso","French fries","French fries with gravy","Sweet Potato","Onion Rings","Pub Chips","Garlic Bread","Fruit","Whole Grains","Nuts","Apple Cider Vinegar","Avocados","Cottage Cheese","Beans and Legumes","Tuna","Boiled Potatoes","Lean Beef and Chicken","Cruciferous Vegetables","Salmon","Leafy Greens","Whole Eggs"};
         int signalchoice[500]; //This variable will store what was ordered
         int counter;
+        int dine=0;
+        string billstring,line,mailid;
         for(counter=0;counter<500;counter++)
         {
             signalchoice[counter]=0;
@@ -465,18 +468,10 @@ int restro::foodmanager()
         {
             calories[counter]=1000;
         }*/
-
-        int bill[500];
-
-        for(counter=0;counter<500;counter++)
-        {
-            bill[counter]=0;
-        }
-
         int mrp[500]={0,0,0,0,0,0,0,0,0,0,250,220,300,210,250,225,230,180,220,190,175,180,190,200,180,140,100,110,90,135,115,75,70,100,105,90,110,120,80,125,130,50,155,200,210,220,185,190,170,180,150,90,150,120,95,110,90,80,155,190,175,180,100,120,120,90,95,90,100,90,90,80,95,95,100,95,50,65,70,100,150,180,175,155,200,130,150,125,120,110,130,80,60,120,90,80,125,135,150,140,180,100,90,175,190};
 
         counter=0;
-        int av,impinput,listing,pplcounter;
+        int mailchoice=0,av,impinput,listing,pplcounter;
         int a,b,i=0,foodbill=0,totcalories=0;
         srand(time(NULL));
         pplcounter = 20+(rand()%21);
@@ -491,13 +486,18 @@ int restro::foodmanager()
                 cout<<"\n\t\t\t\t\t*************************************";
                 cout<<"\n\n\n\t\t\t\t\tNumber of people currently at restaurant: "<<pplcounter;
                 cout<<"\n\n\n\n\t\t\t\t\t1. Order \n\t\t\t\t\t2.Print Bill\n\t\t\t\t\t3.Go Back"<<endl;
-                cout<<"\t\t\t\t\tTotal Bill: "<<foodbill;
+                cout<<"\t\t\t\t\tTotal Bill: ";
+                cout<<"    "<<foodbill<<" Rs";
+                cout<<"\n\t\t\t\t\tTotal Calories: "<<totcalories<<" cal";
                 cout<<"\n\n\t\t\t\t\tEnter Choice: ";
                 cin>>i;
                 if(i==1)
                 {
                     system("cls");
                     //roti is 5 and shabgi is 10
+                    cout<<"\n\n\n\t\t\t\t\t Select you preferred place: \n\n\n\n\n\n\t\t\t\t\t1. Dine at restro\n\t\t\t\t\t2. Takeaway\n\t\t\t\t\t3. Home delivery (+100 Rs.)\n\t\t\t\t\tYour Selection : ";
+                    cin>>dine;
+                    system("cls");
                     label:
                         cout<<"\n\n\n\n\n\n\n\n\n\n";
                     for(counter=0;counter<10;counter++)
@@ -953,37 +953,84 @@ int restro::foodmanager()
                 if(i==2)
                 {
                     system("cls");
+                    ofstream myfile ("bill.txt");
                     listing=0;
-                    cout<<"\n\t\t\t\t\t*************************************";
-                    cout<<"\n\t\t\t\t\t-         Printed Bill               -";
-                    cout<<"\n\t\t\t\t\t*************************************\n\n\n";
-                    cout<<"\t\t\t\t\t           Item name";
-                            cout<<"                MRP         Calories";
-                            cout<<"\n\t\t\t\t\t********************************************************";
-                            cout<<"\n";
+                    myfile<<"\n\t\t\t\t\t*************************************";cout<<"\n\t\t\t\t\t*************************************";
+                    myfile<<"\n\t\t\t\t\t-         Printed Bill               -";cout<<"\n\t\t\t\t\t-         Printed Bill               -";
+                    myfile<<"\n\t\t\t\t\t*************************************\n\n\n";cout<<"\n\t\t\t\t\t*************************************\n\n\n";
+                    myfile<<"\t\t\t\t\t           Item name";cout<<"\t\t\t\t\t           Item name";
+                          myfile<<"                MRP         Calories";cout<<"                MRP         Calories";
+                            myfile<<"\n\t\t\t\t\t********************************************************";cout<<"\n\t\t\t\t\t********************************************************";
+                            myfile<<"\n";cout<<"\n";
                     for(counter=0;counter<500;counter++)
                     {
 
                         for(av=0;av<signalchoice[counter];av++)
                         {
                             listing++;
-                            cout<<"\n\t\t\t\t\t";
-                            cout<<setw(3)<<left<<listing;
-                            cout<<". ";
-                            cout<<setw(30)<< left<< menu[counter];
-                            cout<<" ";
-                            cout<<setw(14)<<left<<mrp[counter];
-                            cout<<calories[counter];
+                            myfile<<"\n\t\t\t\t\t";cout<<"\n\t\t\t\t\t";
+                            myfile<<setw(3)<<left<<listing;cout<<setw(3)<<left<<listing;
+                            myfile<<". ";cout<<". ";
+                            myfile<<setw(30)<< left<< menu[counter];cout<<setw(30)<< left<< menu[counter];
+                            myfile<<" ";cout<<" ";
+                            myfile<<setw(14)<<left<<mrp[counter];cout<<setw(14)<<left<<mrp[counter];
+                            myfile<<calories[counter];cout<<calories[counter];
                         }
                     }
-                     cout<<"\n\t\t\t\t\t********************************************************\n\t\t\t\t\t";
-                     cout<<setw(33)<<left<<"Total Price:";
-                     cout<<"   "<<foodbill;
-                     cout<<"+18%GST= "<<(1.18*foodbill)<<" Rs";
-                     cout<<"\n\n\t\t\t\t\t";
-                     cout<<setw(33)<<left<<"Total Calories:";
-                     cout<<"                 "<<totcalories<<" cal";
-                     cout<<"\n\t\t\t\t\t Press any Key to Continue....";
+                    if(dine==3)
+                        {
+                          myfile<<"\n\t\t\t\t\t"<<(listing+1)<<" . "<<"Home Delivery Charge           100";cout<<"\n\t\t\t\t\t"<<(listing+1)<<" . "<<"Home Delivery Charge           100";
+                          foodbill= foodbill+100;
+                        }
+                     myfile<<"\n\t\t\t\t\t********************************************************\n\t\t\t\t\t";cout<<"\n\t\t\t\t\t********************************************************\n\t\t\t\t\t";
+                     myfile<<setw(33)<<left<<"Total Price:";cout<<setw(33)<<left<<"Total Price:";
+                     myfile<<"   "<<foodbill;cout<<"   "<<foodbill;
+                     myfile<<"+18%GST= "<<((1.18*foodbill)- 18)<<" Rs";cout<<"+18%GST= "<<((1.18*foodbill)- 18)<<" Rs";
+                     myfile<<"\n\n\t\t\t\t\t"; cout<<"\n\n\t\t\t\t\t";
+                     myfile<<setw(33)<<left<<"Total Calories:";cout<<setw(33)<<left<<"Total Calories:";
+                     myfile<<"                 "<<totcalories<<" cal";cout<<"                 "<<totcalories<<" cal";
+                     cout<<"\n\n\n\t\t\t\t\tPRESS 1. TO GET THE BILL IN MAIL FORMAT OR ANY OTHER KEY TO SKIP...";
+                     myfile.close();
+                     cin>>mailchoice;
+                     ifstream myfilye ("bill.txt");
+                     while ( getline (myfilye,line) )
+                        {
+                          billstring+= line;
+                          billstring+= "\n";
+                        }
+                        myfilye.close();
+                        cout<<billstring;
+                     if(mailchoice==1)
+                     {
+
+
+                        cout<<"\n\t\t\t\t\tEnter your email id: ";
+                        cin>>mailid;
+                        cout<<"\n\t\t\t\t\tSending...";
+                        ofstream file;
+                        file.open("test.ps1");
+                        string powershell;
+                        powershell = "$EmailFrom = \"19it055@charusat.edu.in\"\n";
+                        powershell += "$EmailTo = \"";
+                        powershell += mailid;
+                        powershell += "\"\n";
+                        powershell += "$Subject = \"Alpine Resort FoodBill\"\n";
+                        powershell += "$Body = \"";
+                        powershell += billstring ;
+                        powershell +="\"\n";
+                        powershell += "$SMTPServer = \"smtp.gmail.com\"\n";
+                        powershell += "$SMTPClient = New-Object Net.Mail.SmtpClient($SmtpServer, 587)\n";
+                        powershell += "$SMTPClient.EnableSsl = $true\n";
+                        powershell += "$SMTPClient.Credentials = New-Object System.Net.NetworkCredential(\"19it055@charusat.edu.in\", \"iamfarhankhatri\");\n";
+                        powershell += "$SMTPClient.Send($EmailFrom, $EmailTo, $Subject, $Body)\n";
+                        file << powershell << endl;
+                        file.close();
+
+                        system("powershell -ExecutionPolicy Bypass -F test.ps1");
+
+                       remove("test.ps1");
+                       cout<<"\n\t\t\t\t\tDone..";
+                        cout<<"\n\t\t\t\t\t press any key to continue";                    }
                     getch();
                 }
             }
@@ -1033,5 +1080,4 @@ int main()
     }
 
 //END OF MAIN PROGRAM
-
 
