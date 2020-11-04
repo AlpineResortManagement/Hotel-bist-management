@@ -1088,7 +1088,6 @@ int restro::foodmanager()
                           billstring+= "\n";
                         }
                         myfilye.close();
-                        cout<<billstring;
                      if(mailchoice==1)
                      {
 
