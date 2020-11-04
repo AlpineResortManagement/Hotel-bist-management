@@ -10,6 +10,7 @@
 #include<string>
 
 using namespace std;
+int tothotppl;
 
 class hotel
 {
@@ -18,7 +19,8 @@ int room_no;
 char name[30];
 char address[50];
 char phone[10];
-              char aadharnumber[50];
+int ppl=0;
+char aadharnumber[50];
 
 public:
 
@@ -30,7 +32,8 @@ void edit(); //to edit the customer record
 int check(int); //to check room status
 void modify(int); //to modify the record
 void delete_rec(int); //to delete the record
-void bill(int);                 //for the bill of a record
+void bill(int);
+void checkout(int);                 //for the bill of a record
      };
     //END OF CLASS
 
@@ -47,16 +50,24 @@ int choice;
 while(choice!=5)
 {
 
+  tothotppl=0;
   system("cls");
 cout<<"\n\t\t\t\t*************************";
 cout<<"\n\t\t\t\t SIMPLE HOTEL MANAGEMENT ";
 cout<<"\n\t\t\t\t      * MAIN MENU *";
 cout<<"\n\t\t\t\t*************************";
+cout<<"\n\n\n\t\t\tPeople currently staying at the hotel: ";
+ifstream fin("Record.dat",ios::in);
+ while((fin.read((char*)this,sizeof(hotel))) != NULL)
+{tothotppl= tothotppl+ ppl;}
+cout<<tothotppl;
+fin.close();
 cout<<"\n\n\n\t\t\t1.Book A Room";
 cout<<"\n\t\t\t2.Customer Records";
 cout<<"\n\t\t\t3.Rooms Allotted";
 cout<<"\n\t\t\t4.Edit Record";
-cout<<"\n\t\t\t5.Exit";
+cout<<"\n\t\t\t5.Checkout";
+cout<<"\n\t\t\t6.Exit";
 cout<<"\n\n\t\t\tEnter Your Choice: ";
 cin>>choice;
 
@@ -72,10 +83,19 @@ break;
 case 3: rooms();
 break;
 
-case 4: edit();
+case 4:
+    edit();
 break;
 
-case 5: break;
+case 5:
+
+    system("cls");
+    int a;
+    cout<<"\n Enter room no: " ;
+cin>>a;
+   checkout(a);
+case 6:
+    break;
 
 default:
 {
@@ -106,12 +126,12 @@ void hotel::add()
 int r,flag;
 ofstream fout("Record.dat",ios::app);
 
-cout<<"\n Enter Customer Detalis";
+cout<<"\n Enter Customer Details";
 cout<<"\n ----------------------";
 cout<<"\n\n Room no: ";
 cout<<"\n Total no. of Rooms -50";
 cout<<"\n Ordinary Rooms from 1 - 30";
-cout<<"\n Luxuary Rooms from 31 - 45";
+cout<<"\n Elegant Rooms from 31 - 45";
 cout<<"\n Royal Rooms from 46 - 50";
 cout <<"\n Enter The Room no. you want to stay in :- "<<endl;
 cin>>r;
@@ -131,7 +151,10 @@ cout<<" Address: ";
 cin>>address;
 cout<<" Phone No: ";
 cin>>phone;
-
+cout<<" Aadhar No: ";
+cin>>aadharnumber;
+cout<<"People staying in the room: ";
+cin>>ppl;
 fout.write((char*)this,sizeof(hotel));
 cout<<"\n Room is booked...!!!";
 
@@ -173,12 +196,14 @@ if(room_no==r)
 {
 
   system("cls");
-cout<<"\n Cusromer Details";
+cout<<"\n Customer Details";
 cout<<"\n ----------------";
 cout<<"\n\n Room no: "<<room_no;
 cout<<"\n Name: "<<name;
 cout<<"\n Address: "<<address;
 cout<<"\n Phone no: "<<phone;
+cout<<"\n Aadhar No.: "<<aadharnumber;
+cout<<"\n People in room: "<<ppl;
 flag=1;
 break;
 
@@ -204,21 +229,27 @@ void hotel::rooms()
 {
 
   system("cls");
-
+//ifstream fin("Record.dat",ios::in); while((fin.read((char*)this,sizeof(hotel))) != NULL) fin.close();
 ifstream fin("Record.dat",ios::in);
 cout<<"\n\t\t\t    List Of Rooms Allotted";
 cout<<"\n\t\t\t    ----------------------";
-cout<<"\n\n Room No.\tName\t\tAddress\t\t\t\tPhone No.\n";
+cout<<"\n\n Room No.\tName\t\tAddress\t\t\t\tPhone No.\t\tAadhar Number\tPeople In Room\n";
 
-while(!fin.eof())
+/*while(!fin.eof())
 {
 
 fin.read((char*)this,sizeof(hotel));
 cout<<"\n\n "<<room_no<<"\t\t"<<name;
-cout<<"\t\t"<<address<<"\t\t"<<phone;
+cout<<"\t\t"<<address<<"\t\t\t\t"<<phone;
+cout<<"\t\t\t"<<aadharnumber;
 
+}*/
+while((fin.read((char*)this,sizeof(hotel))) != NULL)
+{
+    cout<<"\n\n "<<room_no<<"\t\t"<<name;
+cout<<"\t\t"<<address<<"\t\t\t\t"<<phone;
+cout<<"\t\t\t"<<aadharnumber<<"\t\t\t"<<ppl;
 }
-
 cout<<"\n\n\n\t\t\tPress any key to continue.....!!";
 getch();
 fin.close();
@@ -231,9 +262,7 @@ fin.close();
 
 void hotel::edit()
 {
-
-  system("cls");
-
+system("cls");
 int choice,r;
 cout<<"\n EDIT MENU";
 cout<<"\n ---------";
@@ -323,6 +352,10 @@ cout<<" Address: ";
 cin>>address;
 cout<<" Phone no: ";
 cin>>phone;
+cout<<" Aadhar Number: ";
+cin>>aadharnumber;
+cout<<"People staying room: ";
+cin>>ppl;
 file.seekg(pos);
 file.write((char*)this,sizeof(hotel));
 cout<<"\n Record is modified....!!";
@@ -348,7 +381,6 @@ file.close();
 
 void hotel::delete_rec(int r)
 {
-
 int flag=0;
 char ch;
 ifstream fin("Record.dat",ios::in);
@@ -427,13 +459,13 @@ if(!f1)
   {
 
   if(h1.room_no>=1&&h1.room_no<=30)
-  cout<<"your bill = 2000";
+  cout<<"your bill = 5000";
 
   else if (h1.room_no>=35&&h1.room_no<=45)
-  cout<<"your bill = 5000" ;
+  cout<<"your bill = 8500" ;
 
   else
-  cout<<"your bill = 7000";
+  cout<<"your bill = 12000";
 
   }
 
@@ -446,6 +478,63 @@ if(!f1)
   getch();
 
 }
+
+void hotel::checkout(int r)
+{
+
+
+hotel h1;
+ifstream f1;
+ f1.open("record.dat",ios::in|ios::binary);
+
+if(!f1)
+ cout<<"cannot open";
+
+ else
+ {
+
+
+
+  f1.read((char*)&h1,sizeof (hotel));
+  while(f1)
+
+  {
+
+  f1.read((char*)&h1,sizeof(hotel));
+
+  }
+
+  if (h1.room_no == r)
+  {
+    ofstream mifile ("feedback.txt");
+    string b;
+    system("cls");
+    cout<<"Enter Your feedback: ";
+    cin>>b;
+    mifile<<b<<endl;
+    mifile.close();
+
+  if(h1.room_no>=1&&h1.room_no<=30)
+  cout<<"your bill = 5000";
+
+  else if (h1.room_no>=35&&h1.room_no<=45)
+  cout<<"your bill = 8500" ;
+
+  else
+  cout<<"your bill = 12000";
+
+  }
+
+  else
+  { cout<<"room no. not found";}
+
+  }
+
+  f1.close();
+  getch();
+
+}
+
 
 class restro {
                 public:
@@ -1041,6 +1130,15 @@ int main()
     {
     startagain:
     int alpha;
+        system("cls");
+        cout<<"\n\t\t\t\t\t*************************************";
+        cout<<"\n\t\t\t\t\t        - HOTEL MANAGEMENT -";
+        cout<<"\n\t\t\t\t\t*************************************";
+        cout<<"\n\n\n\n\t\tDEVELOPED BY:";
+        cout<<"\n\n\n\t\t\t\t\tDrashti Jhaveri and Farhan Khatri ";
+        cout<<"\n\n\n\n\n\n\n\t\t\t\t\tPress any key to continue....!!";
+        getch();
+        system("cls");
         cout<<"\n\t\t\t\t\t**************************************";
         cout<<"\n\t\t\t\t\t     - ALPINE RESORT MANAGEMENT -";
         cout<<"\n\t\t\t\t\t**************************************";
@@ -1048,17 +1146,10 @@ int main()
         cin>>alpha;
     if(alpha==1)
     {   //HOTEL MANAGEMENT STARTS FROM HERE
-        hotel h;
         system("cls");
-        cout<<"\n\t\t\t\t\t*************************************";
-        cout<<"\n\t\t\t\t\t        - HOTEL MANAGEMENT -";
-        cout<<"\n\t\t\t\t\t*************************************";
-        cout<<"\n\n\t\tDeveloped By:";
-        cout<<"\n\t\t\tDrashti Jhaveri and Farhan Khatri ";
-        cout<<"\n\n\n\n\n\n\n\t\t\t\t\tPress any key to continue....!!";
-    getch();
-    h.main_menu();
-    return 0;
+        hotel h;
+        h.main_menu();
+        return 0;
     //HOTEL MANAGEMENT ENDS HERE
     }
     else
